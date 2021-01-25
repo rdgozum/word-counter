@@ -20,14 +20,14 @@ def word_count():
     # Check if there is db entry
     cached = CountModel.query.filter_by(word=word, url=url).first()
     if cached:
-        return jsonify(count=cached.count, status=200)
+        return jsonify(count=cached.count, status="ok")
 
     # Call the counter method
-    count, status = counter_method(word, url)
+    count = counter_method(word, url)
 
     # Save to db if found
     entry = CountModel(word=word, url=url, count=count)
     db.session.add(entry)
     db.session.commit()
 
-    return jsonify(count=count, status=status)
+    return jsonify(count=count, status="ok")

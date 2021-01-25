@@ -15,8 +15,7 @@ def counter_method(word, url):
         matches = list(pattern.finditer(html_text))
 
         count = len(matches)
-        status = 200
 
-        return count, status
+        return count
     except:
         abort(500)
