@@ -1,12 +1,12 @@
 import pytest
 
 from word_counter import create_app, db
-from word_counter.config import Config
+from word_counter.config import TestingConfig
 
 
 @pytest.fixture(scope="module")
 def app():
-    flask_app = create_app(Config)
+    flask_app = create_app(TestingConfig)
 
     # Create a test client using the Flask application configured for testing
     with flask_app.test_client() as testing_client:

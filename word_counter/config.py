@@ -9,3 +9,7 @@ class Config:
     FLASK_DEBUG = os.environ.get("FLASK_DEBUG")
     SECRET_KEY = os.environ.get("SECRET_KEY")
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
+
+
+class TestingConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_TEST_URI")

@@ -18,6 +18,7 @@ FLASK_APP=run.py
 FLASK_DEBUG=1
 SECRET_KEY=<alphanumeric string>
 SQLALCHEMY_DATABASE_URI=sqlite:///site.db
+SQLALCHEMY_DATABASE_TEST_URI=sqlite:///site-test.db
 ```
 - Run this command in your terminal to serve the Flask app:
 ```bash
