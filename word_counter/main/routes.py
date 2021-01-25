@@ -10,6 +10,26 @@ main = Blueprint("main", __name__)
 
 @main.route("/wordcount", methods=["GET", "POST"])
 def word_count():
+    """
+    This function calculates word frequency from a page source accepting payload in JSON format.
+
+    Example
+    -------
+    curl -X POST \
+      -H "Content-type: application/json" \
+      -d '{"word": "fit","url": "https://virtusize.jp"}' \
+      "localhost:5000/wordcount"
+
+    Expected Success Response
+    -------------------------
+    HTTP Status Code: 200
+
+    {
+      "count": 12,
+      "status": "ok"
+    }
+    """
+
     word = request.json.get("word")
     url = request.json.get("url")
 
