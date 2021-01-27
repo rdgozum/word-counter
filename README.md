@@ -1,5 +1,5 @@
 # Word Counter
-An API which counts how many times a word exists in the webpage source. Link to the [docs](https://github.com/rdgozum/word-counter/tree/main/docs/api.md).
+An API which counts how many times a word exists in the webpage source. Link to the documentation [here](https://github.com/rdgozum/word-counter/tree/main/docs/api.md).
 
 ## Setup
 Run the commands below to setup your local environment.
@@ -17,7 +17,7 @@ $ pip install -r requirements.txt
 FLASK_APP=run.py
 FLASK_DEBUG=1
 SECRET_KEY=<alphanumeric string>
-SQLALCHEMY_DATABASE_URI=sqlite:///site.db
+SQLALCHEMY_DATABASE_DEV_URI=sqlite:///site-dev.db
 SQLALCHEMY_DATABASE_TEST_URI=sqlite:///site-test.db
 ```
 - Run this command in your terminal to serve the Flask app:
@@ -28,8 +28,8 @@ $ flask run
 ```
 $ curl -X POST \
     -H "Content-type: application/json" \
-    -d '{"word": "fit","url": "https://virtusize.jp"}' \
-    "localhost:5000/wordcount"
+    -d '{"word": "fit", "url": "https://virtusize.jp"}' \
+    "localhost:8080/wordcount"
 ```
 
 ## Unit Test
@@ -37,3 +37,10 @@ $ curl -X POST \
 ```
 $ python -m pytest
 ```
+
+## Deploy App
+Run nginx and flask_app containers using docker-compose command. Once running, the API can be accessed via curl command or browser from any device within the local network.
+- *Build/Run:* `docker-compose up --build`
+- *Check containers status:* `docker-compose ps`
+- *Stop running containers:* `docker-compose kill`
+- *Remove stopped containers:* `docker-compose rm -f`

@@ -2,7 +2,27 @@
 ## Contents
 | **API** | **Endpoint**
 | --- | ---|
+| [Index](#Index) | `GET /` |
 | [Count](#Count) | `POST /wordcount` |
+
+### Index
+
+This is a basic endpoint that returns a message "Hello World!".
+
+* **URL:** `/`
+* **Method:** `GET`
+
+* **Success Response:**
+  * **Code:** 200
+  * **Example:**
+
+    ```
+    {
+        "message": "Hello World!",
+        "status": 200
+    }
+
+    ```
 
 ### Count
 
@@ -32,7 +52,7 @@ This function calculates word frequency from a page source. It accepts payload i
     ```
     {
           "count": 12,
-          "status": "ok"
+          "status": 200
     }
     ```
 
@@ -59,14 +79,14 @@ This function calculates word frequency from a page source. It accepts payload i
   ```
   $ curl -X POST \
       -H "Content-type: application/json" \
-      -d '{"word": "fit","url": "https://virtusize.jp"}' \
-      "localhost:5000/wordcount"
+      -d '{"word": "fit", "url": "https://virtusize.jp"}' \
+      "localhost:8080/wordcount"
   ```
 
 * **Response**
   ```
   {
         "count": 12,
-        "status": "ok"
+        "status": 200
   }
   ```

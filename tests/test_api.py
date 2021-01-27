@@ -3,8 +3,8 @@ import json
 from word_counter.models import CountModel
 
 
-def test_word_count_success(app):
-    test_client, db = app
+def test_word_count_success(test_app):
+    test_client, _ = test_app
 
     # DB state before the API call
     db_content = CountModel.query.first()
@@ -26,10 +26,11 @@ def test_word_count_success(app):
     db_content = CountModel.query.first()
     assert db_content.word == "fit"
     assert db_content.url == "https://virtusize.jp"
+    assert db_content.count == 12
 
 
-def test_word_count_400(app):
-    test_client, db = app
+def test_word_count_400(test_app):
+    test_client, _ = test_app
 
     # API Call
     payload = {"url": "https://virtusize.jp"}
@@ -43,8 +44,8 @@ def test_word_count_400(app):
     assert data["status"] == 400
 
 
-def test_word_count_404(app):
-    test_client, db = app
+def test_word_count_404(test_app):
+    test_client, _ = test_app
 
     # API Call
     payload = {"word": "fit", "url": "https://virtusize.jp"}
@@ -58,8 +59,8 @@ def test_word_count_404(app):
     assert data["status"] == 404
 
 
-def test_word_count_500(app):
-    test_client, db = app
+def test_word_count_500(test_app):
+    test_client, _ = test_app
 
     # API Call
     payload = {"word": "fit", "url": "https://whatisthis.com"}

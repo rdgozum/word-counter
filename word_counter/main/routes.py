@@ -17,8 +17,8 @@ def word_count():
     -------
     curl -X POST \
       -H "Content-type: application/json" \
-      -d '{"word": "fit","url": "https://virtusize.jp"}' \
-      "localhost:5000/wordcount"
+      -d '{"word": "fit", "url": "https://virtusize.jp"}' \
+      "localhost:8080/wordcount"
 
     Expected Success Response
     -------------------------
@@ -26,7 +26,7 @@ def word_count():
 
     {
       "count": 12,
-      "status": "ok"
+      "status": 200
     }
     """
 
@@ -45,9 +45,14 @@ def word_count():
     # Call the counter method
     count = counter_method(word, url)
 
-    # Save to db if found
+    # Save to db
     entry = CountModel(word=word, url=url, count=count)
     db.session.add(entry)
     db.session.commit()
 
-    return jsonify(count=count, status="ok")
+    return jsonify(count=count, status=200), 200
+
+
+@main.route("/", methods=["GET"])
+def index():
+    return jsonify(message="Hello World!", status=200), 200
